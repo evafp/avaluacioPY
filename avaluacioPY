@@ -1,0 +1,49 @@
+# -*- coding: utf-8 -*-
+from System.Collections.Generic import *
+from System import *
+
+class GlobalMembers(object):
+	def Main():
+		#Lectura fitxer Resultats
+		res = List[EventDetection]()
+		ED = EventDetection()
+		F = ifstream()
+		F.open("Resultats.txt")
+		linia = ""
+		while not F.eof():
+			GlobalMembers.getline(F, linia)
+			idx = linia.IndexOf(' ')
+			if idx != -1:
+				fID = linia.Substring(0, idx)
+				fEv = linia.Substring(idx + 1, linia.Length)
+				ED.ID = fID
+				ED.event=fEv
+				res.Add(ED)
+		F.close()
+		#Lectura fitxer solucions
+		sols = Dictionary[str, str]()
+		F.open("Solucions.txt")
+		linia.clear()
+		while not F.eof():
+			GlobalMembers.getline(F, linia)
+			idx = linia.IndexOf(' ')
+			if idx != -1:
+				fID = linia.Substring(0, idx)
+				fEv = linia.Substring(idx + 1, linia.Length)
+				sols[fID] = fEv
+		F.close()
+		#Creació map auxiliar per a l'assignació de nom_event=index
+		aux = Dictionary[str, int]()
+		aux["concert"] = 1
+		aux["exhibition"] = 2
+		aux["fashion"] = 3
+		aux["non_event"] = 4
+		aux["other"] = 5
+		aux["protest"] = 6
+		aux["sports"] = 7
+		aux["theater_dance"] = 8
+		aux["conference"] = 9
+		
+		#Búsqueda IDs al map de solucions
+                
+	Main = staticmethod(Main)
